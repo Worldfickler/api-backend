@@ -66,5 +66,6 @@ public class AuthInterceptor {
         // 通过权限校验，放行
         return joinPoint.proceed();
     }
+
 }
 

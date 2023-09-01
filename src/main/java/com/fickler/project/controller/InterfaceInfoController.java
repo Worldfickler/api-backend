@@ -8,6 +8,7 @@ import com.fickler.project.common.*;
 import com.fickler.project.constant.CommonConstant;
 import com.fickler.project.exception.BusinessException;
 import com.fickler.project.model.dto.interfaceinfo.InterfaceInfoAddRequest;
+import com.fickler.project.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.fickler.project.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.fickler.project.model.dto.interfaceinfo.InterfaceInfoUpdateRequest;
 import com.fickler.project.model.entity.InterfaceInfo;
@@ -15,6 +16,7 @@ import com.fickler.project.model.entity.User;
 import com.fickler.project.model.enums.InterfaceInfoStatusEnum;
 import com.fickler.project.service.InterfaceInfoService;
 import com.fickler.project.service.UserService;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -189,6 +191,47 @@ public class InterfaceInfoController {
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
         boolean result = interfaceInfoService.updateById(interfaceInfo);
         return ResultUtils.success(result);
+    }
+
+    /**
+     * 测试接口
+     * @param interfaceInfoInvokeRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/invoke")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest,
+                                                      HttpServletRequest request) {
+        if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 获取用户id
+        long id = interfaceInfoInvokeRequest.getId();
+        // 获取用户请求参数
+        String useRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        // 判断是否存在
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        // 检查接口状态是否为下线状态
+        if (oldInterfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
+        }
+        // 获取当前用户的 ak 和 sk，这样相当于用户自己这个身份去调用，也不用担心它去刷接口，因为知道是谁刷的接口
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        // 新键一个临时的 client 对象，并传入 ak、sk
+        ApiClient tempClient = new ApiClient(accessKey, secretKey);
+        // 我们只需要进行测试调用，所以我们需要解析传递过来的参数
+        Gson gson = new Gson();
+        // 将用户请求参数转换为 com.fickler.apiclientsdk.model.User 对象
+        com.fickler.apiclientsdk.model.User user = gson.fromJson(useRequestParams, com.fickler.apiclientsdk.model.User.class);
+        String usernameByPost = tempClient.getUsernameByPost(user);
+        // 返回成功响应，并包含调用结果
+        return ResultUtils.success(usernameByPost);
     }
 
     /**
