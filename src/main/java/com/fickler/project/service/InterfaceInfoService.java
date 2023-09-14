@@ -1,8 +1,7 @@
 package com.fickler.project.service;
 
-import com.fickler.project.model.entity.InterfaceInfo;
+import com.fickler.apicommon.model.entity.InterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fickler.project.model.entity.Post;
 
 /**
 * @author dell

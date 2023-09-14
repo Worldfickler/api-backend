@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fickler.project.mapper.InterfaceInfoMapper">
 
-    <resultMap id="BaseResultMap" type="com.fickler.project.model.entity.InterfaceInfo">
+    <resultMap id="BaseResultMap" type="com.fickler.apicommon.model.entity.InterfaceInfo">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>

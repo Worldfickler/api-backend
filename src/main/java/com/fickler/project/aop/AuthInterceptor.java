@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.fickler.project.annotation.AuthCheck;
 import com.fickler.project.common.ErrorCode;
 import com.fickler.project.exception.BusinessException;
-import com.fickler.project.model.entity.User;
+import com.fickler.apicommon.model.entity.User;
 import com.fickler.project.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -1,7 +1,7 @@
 package com.fickler.project.service;
 
-import com.fickler.project.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fickler.apicommon.model.entity.UserInterfaceInfo;
 
 /**
 * @author dell

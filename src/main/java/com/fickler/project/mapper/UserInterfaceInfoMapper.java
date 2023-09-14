@@ -1,7 +1,9 @@
 package com.fickler.project.mapper;
 
-import com.fickler.project.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.fickler.apicommon.model.entity.UserInterfaceInfo;
+
+import java.util.List;
 
 /**
 * @author dell
@@ -11,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
 
+    //select interfaceInfoId, sum(totalNum) as totalNum from user_interface_info group by interfaceInfoId order by totalNum desc limit 3;
+    List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int list);
 }
 
 

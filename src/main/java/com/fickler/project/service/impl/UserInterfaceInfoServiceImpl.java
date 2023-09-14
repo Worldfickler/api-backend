@@ -2,13 +2,11 @@ package com.fickler.project.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fickler.apicommon.model.entity.UserInterfaceInfo;
+import com.fickler.project.service.UserInterfaceInfoService;
 import com.fickler.project.common.ErrorCode;
 import com.fickler.project.exception.BusinessException;
-import com.fickler.project.model.entity.InterfaceInfo;
-import com.fickler.project.model.entity.UserInterfaceInfo;
-import com.fickler.project.service.UserInterfaceInfoService;
 import com.fickler.project.mapper.UserInterfaceInfoMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +16,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo>
-    implements UserInterfaceInfoService{
+    implements UserInterfaceInfoService {
 
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add) {

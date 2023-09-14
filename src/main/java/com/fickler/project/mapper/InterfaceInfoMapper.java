@@ -1,6 +1,6 @@
 package com.fickler.project.mapper;
 
-import com.fickler.project.model.entity.InterfaceInfo;
+import com.fickler.apicommon.model.entity.InterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

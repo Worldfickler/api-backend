@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fickler.project.common.ErrorCode;
 import com.fickler.project.exception.BusinessException;
 import com.fickler.project.mapper.UserMapper;
-import com.fickler.project.model.entity.User;
+import com.fickler.apicommon.model.entity.User;
 import com.fickler.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

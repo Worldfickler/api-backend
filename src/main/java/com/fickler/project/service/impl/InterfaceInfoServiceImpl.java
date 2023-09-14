@@ -3,7 +3,7 @@ package com.fickler.project.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fickler.project.common.ErrorCode;
 import com.fickler.project.exception.BusinessException;
-import com.fickler.project.model.entity.InterfaceInfo;
+import com.fickler.apicommon.model.entity.InterfaceInfo;
 import com.fickler.project.service.InterfaceInfoService;
 import com.fickler.project.mapper.InterfaceInfoMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author dell
- * @description Õë¶Ô±í¡¾interface_info(½Ó¿ÚÐÅÏ¢±í)¡¿µÄÊý¾Ý¿â²Ù×÷ServiceÊµÏÖ
+ * @description ï¿½ï¿½Ô±ï¿½interface_info(ï¿½Ó¿ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ServiceÊµï¿½ï¿½
  * @createDate 2023-05-05 09:54:58
  */
 @Service
@@ -25,18 +25,18 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
-        // »ñÈ¡½Ó¿Ú¶ÔÏóÃû³Æ
+        // ï¿½ï¿½È¡ï¿½Ó¿Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         String name = interfaceInfo.getName();
 
-        // ´´½¨Ê±£¬ËùÓÐ²ÎÊý±ØÐë·Ç¿Õ
-        // todo ²ÎÊýÐ£Ñé
+        // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½
+        // todo ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½
         if (add) {
             if (StringUtils.isAnyBlank(name)) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR);
             }
         }
         if (StringUtils.isNotBlank(name) && name.length() > 50L) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "ÄÚÈÝ¹ý³¤");
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½");
         }
     }
 

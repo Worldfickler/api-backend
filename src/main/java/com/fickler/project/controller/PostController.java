@@ -13,7 +13,7 @@ import com.fickler.project.model.dto.post.PostAddRequest;
 import com.fickler.project.model.dto.post.PostQueryRequest;
 import com.fickler.project.model.dto.post.PostUpdateRequest;
 import com.fickler.project.model.entity.Post;
-import com.fickler.project.model.entity.User;
+import com.fickler.apicommon.model.entity.User;
 import com.fickler.project.service.PostService;
 import com.fickler.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
